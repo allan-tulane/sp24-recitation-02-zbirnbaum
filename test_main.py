@@ -13,11 +13,13 @@ assert simple_work_calc(3, 2, 2) == 5
 
 
 def test_work():
-  assert work_calc(10, 2, 2, lambda n: 1) == 3
-  assert work_calc(20, 1, 2, lambda n: n * n) == 20
-  assert work_calc(30, 3, 2, lambda n: n) == 30
-
-
+  assert work_calc(10, 2, 2, lambda n: 1) == 15
+  assert work_calc(20, 1, 2, lambda n: n * n) == 530
+  assert work_calc(30, 3, 2, lambda n: n) == 300
+  assert work_calc(1, 5, 4, lambda n: 2 * n) == 1
+  assert work_calc(3, 1, 2, lambda n: 2 * n) == 7
+  assert work_calc(2, 1, 2, lambda n: n) == 3
+  
 #def test_compare_work():
 # curry work_calc to create multiple work
 # functions taht can be passed to compare_work
