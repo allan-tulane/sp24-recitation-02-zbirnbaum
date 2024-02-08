@@ -3,7 +3,7 @@ CMPS 2200  Recitation 2
 """
 
 ### the only imports needed are here
-#import tabulate
+import tabulate
 import time
 ###
 
@@ -20,8 +20,11 @@ def simple_work_calc(n, a, b):
 	"""
   if n == 1:
     return 1
+  elif n == 0:
+    return 0
   else:
     return a * simple_work_calc(n // b, a, b) + n
+    
 
 
 def work_calc(n, a, b, f):
@@ -38,6 +41,8 @@ def work_calc(n, a, b, f):
 	"""
   if n == 1:
     return 1
+  elif n == 0:
+    return 0
   else:
     return a * work_calc(n // b, a, b, f) + f(n)
 
@@ -54,13 +59,13 @@ def span_calc(n, a, b, f):
 
 	Returns: the value of W(n).
 	"""
-  # TODO
-  pass
+  if(n == 1):
+    return 1
+  else:
+    return a * span_calc(n // b, a, b, f) + f(n)
 
 
-def compare_work(work_fn1,
-                 work_fn2,
-                 sizes=[10, 20, 50, 100, 1000, 5000, 10000]):
+def compare_work(work_fn1, work_fn2, sizes=[10, 20, 50, 100, 1000, 5000, 10000]):
   """
 	Compare the values of different recurrences for 
 	given input sizes.
@@ -101,5 +106,5 @@ def compare_span(span_fn1,
   result = []
   for n in sizes:
     # compute W(n) using current a, b, f
-    result.append((n, span_fn1, span_fn2))
+    result.append((n, span_fn1(n), span_fn2(n))
   return result

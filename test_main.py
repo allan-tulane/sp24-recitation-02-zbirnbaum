@@ -1,6 +1,5 @@
 from main import *
 
-
 def test_simple_work():
   """ done. """
 
@@ -20,15 +19,22 @@ def test_work():
   assert work_calc(3, 1, 2, lambda n: 2 * n) == 7
   assert work_calc(2, 1, 2, lambda n: n) == 3
   
-#def test_compare_work():
+def test_compare_work():
 # curry work_calc to create multiple work
 # functions taht can be passed to compare_work
 
-# create work_fn1
-# create work_fn2
+    # create work_fn1
+    work_fn1 = lambda n: 1
+    work_fn1=lambda n: 2 * work_fn1(n//2) + work_fn1(n)
 
-#res = compare_work(work_fn1, work_fn2)
-#print(res)
+    # create work_fn2
+    work_fn2 = lambda n: 1
+    work_fn2 = lambda n: 2 * work_fn2(n//2) + work_fn2(n*n)
 
-#def test_compare_span():
-# TODO
+    res = compare_work(work_fn1, work_fn2)
+    print(res)
+
+def test_compare_span():
+  assert span_calc(10, 2, 2, lambda n: 1) == 15
+  assert span_calc(20, 1, 2, lambda n: n * n) == 530
+  assert span_calc(30, 3, 2, lambda n: n) == 300
